@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Inter', sans-serif;
+        
     }
 `
 export const FormContainer = styled.main`
@@ -41,3 +42,21 @@ export const FormHeading = styled.h1`
         margin-bottom: ${0.063 * 48}rem;
     }
 `
+export const Button = styled.button`
+    color: #fff;
+    background: #7D5FFF;
+    width: 100%;
+    border-radius: ${0.063 * 6}rem;
+    height: ${0.063 * 57}rem;
+    font-size: ${0.063 * 17}rem;
+    line-height: ${0.063 * 21}rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover{
+        box-shadow: inset 1px 4px 3px 5px rgba(0, 0, 0, 0.2);
+    }
+`   
