@@ -1,19 +1,22 @@
-import {Label, Input} from "./style"
+import {Label, Input, FieldGroup} from "./style"
+import {UseFormRegister} from "react-hook-form"
+
 
 interface Props {
     label:string,
     id:string,
     type: string,
     placeholder:string,
+    register: any
 }
 
-const index = ({label, id, type, placeholder}:Props) => {
+const Index = ({label, type, id, placeholder, register}:Props) => {
   return (
-    <div>
+    <FieldGroup>
         <Label htmlFor={id}>{label}</Label>
-        <Input id={id} type={type} placeholder={placeholder} />
-    </div>
+        <Input {...register} id={id} type={type} placeholder={placeholder} />
+    </FieldGroup>
   )
 }
 
-export default index
+export default Index
