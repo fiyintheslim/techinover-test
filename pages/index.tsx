@@ -10,13 +10,16 @@ const Home: NextPage = () => {
       
 
       <main className={styles.main}>
-        
-      <div className={styles.card}>
-        <Link href="/signup">Signup</Link>
-      </div>
-      <div className={styles.card}>
-        <Link href="/login" >Login</Link>
-      </div>
+      <Link href="/signup"> 
+        <p className={styles.card}>
+          Signup
+        </p>
+      </Link>
+      <Link href="/login" >
+        <p className={styles.card}>
+          Login
+        </p>
+      </Link>
        
       </main>
 
