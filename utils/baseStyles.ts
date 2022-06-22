@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Inter', sans-serif;
-        transition: 0.3s ease;
+        transition: background 0.3s ease;
     }
 `
 export const FormContainer = styled.main`
@@ -59,6 +59,6 @@ export const Button = styled.button`
     cursor: pointer;
     &:hover{
         background: #b4a4fc;
-        color: #000000;
+        color: rgb(66 65 65);;
     }
 `   
