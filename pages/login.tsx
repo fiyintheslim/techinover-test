@@ -1,13 +1,15 @@
-import axios from "axios"
+import axios, {AxiosError} from "axios"
 import toast from "react-hot-toast"
 import {useState} from "react"
 import {useForm} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as Yup from "yup"
 import Field from "../components/Fields/input"
-import {LoginData} from "../utils/types"
+import {LoginData, ServerResponse, ServerError} from "../utils/types"
 import {FormHeading, FormContainer, Form, Button} from "../utils/baseStyles"
 import Spinner from "../components/Spinner"
+import {postRequest} from "../utils/API"
+
 
 const Login = () => {
     const [loading, setLoading] = useState(false)
@@ -23,17 +25,42 @@ const Login = () => {
 
     const submitHandler = async (value: LoginData) => {
         setLoading(true)
-        try{
-            const response = await axios.post("https://auth-test-api-techinnover.herokuapp.com/api/v1/user/login", value)
+        // try{
+        //     // const response = await axios.post("https://auth-test-api-techinnover.herokuapp.com/api/v1/user/login", value)
+        //     const 
+        //     document.cookie = `userID=${response.data._id}`
+        //     console.log("Response", response)
+        //     toast.success("Login was successful")
+        //     setLoading(false)
+        // }catch(err: any){
             
-            document.cookie = `userID=${response.data._id}`
-            toast.success("Login was successful")
-            setLoading(false)
-        }catch(err:any){
+        //         console.log(err.response, err.message)
+        //         toast.error(err.data.message)
+           
+        //     setLoading(false)
+        // }
+        const res = postRequest<LoginData, ServerResponse>("login", value)
+        .then(response=>{
+            if(response.success && "_id" in response.data){
             
-            toast.error(err.message)
+                toast.success("Login was successful")
+                document.cookie = `userID=${response.data._id}`
+                setLoading(false)
+            }
+        })
+        .catch((err: AxiosError<ServerError>)=>{
+            console.log("Error", err)
+            
+            if(err.response?.data){  
+                toast.error(err.response.data.message)
+            }else{
+                toast.error(err.message)
+            }
+                
             setLoading(false)
-        }
+        })
+        
+        
     }
   return (
     <FormContainer onSubmit={handleSubmit(submitHandler)}>

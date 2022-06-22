@@ -1,5 +1,5 @@
 import {useState} from "react"
-import axios from "axios"
+import {AxiosError} from "axios"
 import toast from "react-hot-toast"
 import {useRouter} from "next/router"
 import {useForm} from "react-hook-form"
@@ -7,9 +7,10 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import * as Yup from "yup"
 import Field from "../components/Fields/input"
 import Select from "../components/Fields/Select"
-import {SignUpData} from "../utils/types"
+import {SignUpData, ServerResponse, ServerError} from "../utils/types"
 import {FormHeading, FormContainer, Form, Button} from "../utils/baseStyles"
 import Spinner from "../components/Spinner"
+import {postRequest} from "../utils/API"
 
 const SignUp = () => {
     const [loading, setLoading] = useState(false)
@@ -26,17 +27,36 @@ const SignUp = () => {
     })
 
     const submitHandler = async (value: SignUpData) => {
-        setLoading(true)
-        try{
-            const response = await axios.post("https://auth-test-api-techinnover.herokuapp.com/api/v1/user/create", value)
-            toast.success("Sign up was successful")
-            router.push("/login")
+        // setLoading(true)
+        // try{
+        //     const response = await axios.post("https://auth-test-api-techinnover.herokuapp.com/api/v1/user/create", value)
+        //     toast.success("Sign up was successful")
+        //     router.push("/login")
+        //     setLoading(false)
+        // }catch(err: any){
+        //     toast.error(err.message)
+        //     setLoading(false)
+        // }
+        const res = postRequest<SignUpData, ServerResponse>("login", value)
+        .then(response=>{
+            if(response.success && "_id" in response.data){
+            
+                toast.success("Login was successful")
+                document.cookie = `userID=${response.data._id}`
+                setLoading(false)
+            }
+        })
+        .catch((err: AxiosError<ServerError>)=>{
+            console.log("Error", err)
+            
+            if(err.response?.data){  
+                toast.error(err.response.data.message)
+            }else{
+                toast.error(err.message)
+            }
+                
             setLoading(false)
-        }catch(err: any){
-            toast.error(err.message)
-            setLoading(false)
-        }
-        
+        })
 
     }
   return (
