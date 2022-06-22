@@ -9,7 +9,7 @@ import Field from "../components/Fields/input"
 import Select from "../components/Fields/Select"
 import {SignUpData} from "../utils/types"
 import {FormHeading, FormContainer, Form, Button} from "../utils/baseStyles"
-
+import Spinner from "../components/Spinner"
 
 const SignUp = () => {
     const [loading, setLoading] = useState(false)
@@ -75,7 +75,13 @@ const SignUp = () => {
                 register={register("userType")}
                 error={errors.userType}
             />
-            <Button disabled={loading} type="submit">Signup</Button>
+            <Button disabled={loading} type="submit">
+                {!loading ? 
+                    <span>Signup</span>
+                :
+                <Spinner />
+                }
+            </Button>
         </Form>
     </FormContainer>
   )

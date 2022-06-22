@@ -7,6 +7,7 @@ import * as Yup from "yup"
 import Field from "../components/Fields/input"
 import {LoginData} from "../utils/types"
 import {FormHeading, FormContainer, Form, Button} from "../utils/baseStyles"
+import Spinner from "../components/Spinner"
 
 const Login = () => {
     const [loading, setLoading] = useState(false)
@@ -54,7 +55,12 @@ const Login = () => {
                 register={register("password")}
                 error={errors.password}
             />
-            <Button disabled={loading} type="submit">Login</Button>
+            <Button disabled={loading} type="submit">
+                {!loading?
+                <span>Login</span>
+                :
+                <Spinner />
+                }</Button>
         </Form>
     </FormContainer>
   )
