@@ -27,16 +27,7 @@ const SignUp = () => {
     })
 
     const submitHandler = async (value: SignUpData) => {
-        // setLoading(true)
-        // try{
-        //     const response = await axios.post("https://auth-test-api-techinnover.herokuapp.com/api/v1/user/create", value)
-        //     toast.success("Sign up was successful")
-        //     router.push("/login")
-        //     setLoading(false)
-        // }catch(err: any){
-        //     toast.error(err.message)
-        //     setLoading(false)
-        // }
+        
         const res = postRequest<SignUpData, ServerResponse>("login", value)
         .then(response=>{
             if(response.success && "_id" in response.data){

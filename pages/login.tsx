@@ -25,20 +25,7 @@ const Login = () => {
 
     const submitHandler = async (value: LoginData) => {
         setLoading(true)
-        // try{
-        //     // const response = await axios.post("https://auth-test-api-techinnover.herokuapp.com/api/v1/user/login", value)
-        //     const 
-        //     document.cookie = `userID=${response.data._id}`
-        //     console.log("Response", response)
-        //     toast.success("Login was successful")
-        //     setLoading(false)
-        // }catch(err: any){
-            
-        //         console.log(err.response, err.message)
-        //         toast.error(err.data.message)
-           
-        //     setLoading(false)
-        // }
+        
         const res = postRequest<LoginData, ServerResponse>("login", value)
         .then(response=>{
             if(response.success && "_id" in response.data){
