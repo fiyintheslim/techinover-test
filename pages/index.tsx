@@ -11,9 +11,13 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         
-
-       <Link href="/signup" className={styles.card}>Signup</Link>
-       <Link href="/login" className={styles.card}>Login</Link>
+      <div className={styles.card}>
+        <Link href="/signup">Signup</Link>
+      </div>
+      <div className={styles.card}>
+        <Link href="/login" >Login</Link>
+      </div>
+       
       </main>
 
       
