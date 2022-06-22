@@ -76,7 +76,7 @@ const SignUp = () => {
                 error={errors.userType}
             />
             <Button disabled={loading} type="submit">
-                {!loading ? 
+                {loading ? 
                     <span>Signup</span>
                 :
                 <Spinner />
