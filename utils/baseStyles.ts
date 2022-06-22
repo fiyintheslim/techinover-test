@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Inter', sans-serif;
-        
+        transition: 0.3s ease;
     }
 `
 export const FormContainer = styled.main`
@@ -50,6 +50,7 @@ export const Button = styled.button`
     height: ${0.063 * 57}rem;
     font-size: ${0.063 * 17}rem;
     line-height: ${0.063 * 21}rem;
+    
     display: flex;
     align-items: center;
     justify-content: center;
