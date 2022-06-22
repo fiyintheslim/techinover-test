@@ -45,3 +45,7 @@ export const SelectInput = styled.select`
         text-transform: capitalize
     }
 `
+export const Error = styled.p`
+    font-size: ${0.063 * 12}rem;
+    color: red;
+`

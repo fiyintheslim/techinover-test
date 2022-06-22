@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from "next/head"
 import {GlobalStyle} from "../utils/baseStyles"
+import {Toaster} from "react-hot-toast"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,6 +16,23 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <Component {...pageProps} />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          success:{
+            style:{
+              background: '#10B981',
+              color: "#ffffff"
+            }
+          },
+          error:{
+            style:{
+              background: "#EF4444",
+              color: "#ffffff"
+            }
+          }
+        }}
+      />
     </>
   )
 }
