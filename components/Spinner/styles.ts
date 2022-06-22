@@ -5,9 +5,9 @@ const Spinner = styled.div`
     margin: 0 auto;
     &:after{
         content: "";
-        width:${0.063 * 27}rem;
-        height: ${0.063 * 27}rem;
-        border: ${0.063 * 5}rem solid #dddddd;
+        width:${0.063 * 17}rem;
+        height: ${0.063 * 17}rem;
+        border: ${0.063 * 3}rem solid #dddddd;
         border-top-color: #009579;
         border-radius: 50%;
         position: absolute;
