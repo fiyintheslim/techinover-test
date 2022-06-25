@@ -33,7 +33,7 @@ const SignUp = () => {
             if(response.success && "_id" in response.data){
             
                 toast.success("Sign up was successful")
-                document.cookie = `userID=${response.data._id}`
+                router.push("/login")
                 setLoading(false)
             }
         })
