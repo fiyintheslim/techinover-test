@@ -27,12 +27,12 @@ const SignUp = () => {
     })
 
     const submitHandler = async (value: SignUpData) => {
-        
-        const res = postRequest<SignUpData, ServerResponse>("login", value)
+        setLoading(true)
+        postRequest<SignUpData, ServerResponse>("create", value)
         .then(response=>{
             if(response.success && "_id" in response.data){
             
-                toast.success("Login was successful")
+                toast.success("Sign up was successful")
                 document.cookie = `userID=${response.data._id}`
                 setLoading(false)
             }
